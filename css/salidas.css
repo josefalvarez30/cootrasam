@@ -1,0 +1,78 @@
+/* ===== Tablero de salidas ===== */
+.sal-seccion { padding: 40px 0 10px; }
+
+.sal-tablero { background: #0f0f10; color: #fff; border-radius: 16px; padding: 22px 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.25); font-family: 'Poppins', sans-serif; }
+.sal-cabecera { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; margin-bottom: 18px; }
+.sal-titulo { font-family: 'Oswald', sans-serif; font-size: 24px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; color: #fb923c; display: flex; align-items: center; gap: 12px; }
+.sal-titulo img { height: 36px; width: auto; border-radius: 4px; }
+.sal-subtitulo { font-size: 12px; color: #a1a1aa; margin-top: 2px; text-transform: none; font-family: 'Poppins', sans-serif; font-weight: 400; letter-spacing: 0; }
+
+.sal-reloj { text-align: right; }
+.sal-reloj-hms { font-family: 'Oswald', sans-serif; font-size: 40px; font-weight: 600; letter-spacing: 1px; font-variant-numeric: tabular-nums; line-height: 1; }
+.sal-reloj-ampm { font-size: 14px; color: #fb923c; font-weight: 600; margin-left: 6px; }
+.sal-reloj-fecha { font-size: 12px; color: #a1a1aa; margin-top: 4px; }
+
+.sal-columnas { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+@media (max-width: 760px) { .sal-columnas { grid-template-columns: 1fr; } }
+
+.sal-col { background: #18181b; border-radius: 12px; overflow: hidden; border-top: 3px solid #c2410c; }
+.sal-ruta { display: flex; align-items: center; gap: 12px; padding: 12px 16px; font-family: 'Oswald', sans-serif; font-size: 19px; letter-spacing: 1px; text-transform: uppercase; background: #1f1f23; }
+.sal-ruta i { color: #fb923c; }
+
+.sal-encabezados, .sal-fila { display: grid; grid-template-columns: 1.2fr 1fr 1fr; align-items: center; gap: 10px; padding: 0 16px; }
+.sal-encabezados { padding-top: 8px; padding-bottom: 6px; font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase; color: #71717a; font-weight: 600; }
+.sal-encabezados span:last-child { text-align: right; }
+
+.sal-lista { list-style: none; margin: 0; padding: 0; }
+.sal-fila { padding-top: 12px; padding-bottom: 12px; border-top: 1px solid #26262b; transition: background 0.3s; }
+
+.sal-hora { font-family: 'Oswald', sans-serif; font-size: 24px; font-weight: 600; font-variant-numeric: tabular-nums; line-height: 1.1; }
+.sal-hora small { font-size: 12px; color: #a1a1aa; font-weight: 500; }
+.sal-dia { display: block; font-family: 'Poppins', sans-serif; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: #fb923c; font-weight: 600; }
+
+/* La placa se ve como una placa colombiana: fondo amarillo y letras negras */
+.sal-placa { justify-self: start; background: #facc15; color: #111; font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 18px; letter-spacing: 2px; padding: 3px 12px; border-radius: 6px; border: 2px solid #111; text-transform: uppercase; white-space: nowrap; }
+
+.sal-falta { text-align: right; font-family: 'Oswald', sans-serif; font-size: 20px; color: #d4d4d8; font-variant-numeric: tabular-nums; }
+
+/* Faltan entre 5 y 2 minutos: el tiempo se vuelve naranja y cuenta en minutos y segundos */
+.sal-fila.cerca .sal-falta { color: #fb923c; }
+/* Faltan 2 minutos o menos: la fila se resalta y la hora y el tiempo parpadean */
+.sal-fila.pronto { background: rgba(250, 204, 21, 0.10); }
+.sal-fila.pronto .sal-hora, .sal-fila.pronto .sal-falta { color: #facc15; animation: sal-parpadeo 1s steps(1, end) infinite; }
+/* Ya es la hora de salida */
+.sal-fila.saliendo .sal-falta { color: #4ade80; font-weight: 700; letter-spacing: 1px; }
+
+@keyframes sal-parpadeo { 0% { opacity: 1; } 50% { opacity: 0.1; } }
+@media (prefers-reduced-motion: reduce) {
+  .sal-fila.pronto .sal-hora, .sal-fila.pronto .sal-falta { animation: none; font-weight: 700; }
+}
+
+.sal-vacio { color: #71717a; font-size: 14px; padding: 16px; margin: 0; }
+.sal-enlace { display: inline-block; margin-top: 16px; color: #fb923c; font-size: 13px; font-weight: 600; text-decoration: none; }
+.sal-enlace:hover { text-decoration: underline; }
+
+/* ===== Versión grande, para la pantalla de la base ===== */
+.sal-grande { padding: 30px 34px; }
+.sal-grande .sal-titulo { font-size: 34px; }
+.sal-grande .sal-titulo img { height: 52px; }
+.sal-grande .sal-reloj-hms { font-size: 72px; }
+.sal-grande .sal-reloj-ampm { font-size: 22px; }
+.sal-grande .sal-reloj-fecha { font-size: 16px; }
+.sal-grande .sal-ruta { font-size: 28px; padding: 16px 22px; }
+.sal-grande .sal-encabezados { font-size: 12px; padding-left: 22px; padding-right: 22px; }
+.sal-grande .sal-fila { padding: 16px 22px; }
+.sal-grande .sal-hora { font-size: 38px; }
+.sal-grande .sal-hora small { font-size: 16px; }
+.sal-grande .sal-placa { font-size: 30px; padding: 4px 18px; }
+.sal-grande .sal-falta { font-size: 32px; }
+.sal-grande .sal-vacio { font-size: 20px; padding: 24px 22px; }
+@media (max-width: 760px) {
+  .sal-grande { padding: 20px 16px; }
+  .sal-grande .sal-reloj-hms { font-size: 44px; }
+  .sal-grande .sal-titulo { font-size: 24px; }
+  .sal-grande .sal-ruta { font-size: 20px; }
+  .sal-grande .sal-hora { font-size: 26px; }
+  .sal-grande .sal-placa { font-size: 20px; }
+  .sal-grande .sal-falta { font-size: 22px; }
+}

@@ -1,0 +1,18 @@
+
+@import url("premium-global.css");
+
+:root {
+  --color-primary: #c2410c;
+  --color-primary-dark: #9a3412;
+  --color-white: #ffffff;
+  --color-dark: #1c1a17;
+  --color-gray: #6b6155;
+  --color-light-bg: #f3ead9;
+  --color-accent: #55684a;
+
+  --font-main: 'Poppins', sans-serif;
+  --font-display: 'Oswald', sans-serif;
+
+  --transition: 0.3s ease;
+  --header-height: 90px;
+}
